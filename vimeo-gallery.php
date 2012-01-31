@@ -16,7 +16,7 @@ function do_vimeo_gallery_shortcode($atts, $content="") {
 		'height' => 380	
 	);
 	
-	$atts = shortcode_atts($atts, $defaults);
+	$atts = shortcode_atts($defaults, $atts);
 	
 	if( preg_match_all( '/http:\/\/vimeo\.com\/\d+/im', trim($content), $videos, PREG_PATTERN_ORDER) == 0 ) {
 		echo "<!-- Vimeo gallery failed to find any videos -->";
