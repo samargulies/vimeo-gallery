@@ -53,7 +53,6 @@
 .vimeo-gallery .video { 
 	float: left;
 	width: 65.3061224%; /* 640/980 */
-	height: 36.7346939%; /* 360/980 */
 	padding: 1.02040816%; /* 10/980 */
 	background: #eee;
 }

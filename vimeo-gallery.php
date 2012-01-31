@@ -9,14 +9,14 @@ Author: Sam Margulies (http://belabor.org/)
 
 add_shortcode('vimeo-gallery', 'do_vimeo_gallery_shortcode');
 
-function do_vimeo_gallery_shortcode($args, $content="") {
+function do_vimeo_gallery_shortcode($atts, $content="") {
 	
 	$defaults = array(
 		'width'  => 640,
 		'height' => 380	
 	);
 	
-	$args = wp_parse_args($args, $defaults);
+	$atts = shortcode_atts($atts, $defaults);
 	
 	if( preg_match_all( '/http:\/\/vimeo\.com\/\d+/im', trim($content), $videos, PREG_PATTERN_ORDER) == 0 ) {
 		echo "<!-- Vimeo gallery failed to find any videos -->";
@@ -33,7 +33,7 @@ function do_vimeo_gallery_shortcode($args, $content="") {
 
 	?>
 
-	<div id="vimeo-gallery-<?php echo $gallery_id; ?>" class="vimeo-gallery" style="width:<?php echo $args['width']; ?>px; height: <?php echo $args['height']; ?>px;">
+	<div id="vimeo-gallery-<?php echo $gallery_id; ?>" class="vimeo-gallery" style="width:<?php echo $atts['width']; ?>px; height: <?php echo $atts['height']; ?>px;">
 		<div class="video"></div>
 		<div class="playlist">
 			<ul>
