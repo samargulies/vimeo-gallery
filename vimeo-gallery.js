@@ -20,17 +20,10 @@ jQuery(document).ready(function($){
 				'success' :  function(video){
 					// we have the embed info now, lets program the playlist
 					
-					// If we can't load the thumbnail, just give up
-					if( undefined == video.thumbnail_url ) {
-						return;
-					}
-					
-					console.log(video);
-					
 					// save all the the data for later
 					video_info[video.video_id] = video;
 					
-					var listItem = '<a href="##" data-video-id="' + video.video_id + '"><img src="' + video.thumbnail_url + '" class="thumbnail" />';
+					var listItem = '<a href="##" data-video-id="' + video.video_id + '"><img src="' + video.thumbnail_url + '" class="thumbnail" width="33.3333333%" />';
 					listItem += '<h2>' + video.title + '</h2></a><p>' +  video.description + '</p>';
 					
 					video$.html(listItem);
@@ -38,6 +31,10 @@ jQuery(document).ready(function($){
 					if( video$.is('li:first-child') ) {
 						video$.find('a').click();
 					}
+				},
+				'error' : function() {
+					// can't let the bad videos spoil all the fun
+					video$.remove();
 				}
 			});
 			
